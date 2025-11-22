@@ -1,0 +1,85 @@
+api.louvre.fr2.wks-production.com
+bo.mutpp.fr2.wks-production.com
+axa-kyc.recette.fr2.wks-recette.com
+fn-ms-sar-tickets-history-v1-pro-cnx.onelinkbpo.com
+fn-ms-volaris-sendchat-processchat-dev-cx.onelinkbpo.com
+file-upload-marsh-dev-cnx.onelinkbpo.com
+frontpro.mutpp.fr2.wks-production.com
+https://fn-ms-sar-emd-process-v1-pro-cnx.onelinkbpo.com
+https://gw4.de.webhelp.com
+https://irishubspot-dev.onelinkbpo.com
+https://kim37.netino.com
+https://kim25.netino.com
+https://kim41.netino.com
+https://kim38.netino.com
+https://kim43.netino.com
+https://kim44.netino.com
+https://kim45.netino.com
+https://kim47.netino.com
+https://kim48.netino.com
+https://kim50.netino.com
+https://louvre-kyc.louvre.fr2.wks-production.com
+https://louvre-kyc.recette.fr2.wks-recette.com
+https://matomo.fr2.wks-recette.com
+https://middleoffice.louvre.fr2.wks-production.com
+https://prompt-manager-uat.onelinkbpo.com
+https://prompt-manager-dev.onelinkbpo.com
+https://ubycalladmindev.onelinkbpo.com
+https://ubycalladminprd.onelinkbpo.com
+https://vpn62.tr.webhelp.com
+https://ww25.ci-prod.webhelp.group
+https://ww25.demo.webhelp.group
+https://ww25.hotfix.webhelp.group
+https://ww25.prod.webhelp.group
+https://ww25.qa.webhelp.group
+https://ww25.uat.webhelp.group
+https://ww25.zimbra.webhelp.group
+https://ww38.tokyo.webhelp.group
+
+
+nmap -iL domain_200.txt \
+-p 80,443 \
+--script 
+http-title,http-headers,ssl-cert,ssl-enum-ciphers,http-server-header,http-methods \
+--open \
+-oN nmap_full_non_intrusive.txt
+
+
+nmap -Pn -p- -sS -sV --version-intensity 5 --script "default,safe" --reason --open -T4 -oA nmap_non_intrusive_scan https://ww38.tokyo.webhelp.group
+
+nmap -Pn -p- -sS -sV --version-intensity 5 --script "default,safe" --reason --open -T4 -oA nmap_non_intrusive_scan domain_200.txt
+
+nmap -iL domains.txt \
+-p 80,443 \
+-sS -sV --version-intensity 5 \
+--script "default,safe,http-title,http-headers,ssl-cert,ssl-enum-ciphers,http-server-header,http-methods,http-robots.txt,http-security-headers,http-cookie-flags,http-git,http-vhosts,http-cross-domain-policy,http-date,http-stats" \
+--reason --open -Pn -T4 \
+-oA nmap_full_non_intrusive
+
+
+
+nmap -iL domain_200.txt \
+-p 80,443,8080,8443 \
+-sS -sV --version-intensity 5 \
+--script "safe,default,\
+http-title,\
+http-headers,\
+http-methods,\
+http-server-header,\
+http-security-headers,\
+http-robots.txt,\
+http-favicon,\
+http-git,\
+http-ls,\
+ssl-cert,\
+ssl-enum-ciphers,\
+ssl-dh-params,\
+dns-brute,\
+dns-service-discovery,\
+banner" \
+--open --reason -T4 \
+-oA nmap_non_intrusive_full
+
+
+
+
